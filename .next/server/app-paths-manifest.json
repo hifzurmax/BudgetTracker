@@ -1,0 +1,7 @@
+{
+  "/api/budgets/route": "app/api/budgets/route.js",
+  "/api/budgets/active/route": "app/api/budgets/active/route.js",
+  "/page": "app/page.js",
+  "/create-budget/page": "app/create-budget/page.js",
+  "/history/page": "app/history/page.js"
+}
