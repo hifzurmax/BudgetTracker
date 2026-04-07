@@ -1,7 +1,11 @@
 {
-  "/api/budgets/route": "app/api/budgets/route.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/api/budgets/active/route": "app/api/budgets/active/route.js",
-  "/page": "app/page.js",
+  "/api/budgets/route": "app/api/budgets/route.js",
+  "/api/expenses/[id]/route": "app/api/expenses/[id]/route.js",
+  "/api/expenses/route": "app/api/expenses/route.js",
   "/create-budget/page": "app/create-budget/page.js",
-  "/history/page": "app/history/page.js"
+  "/history/page": "app/history/page.js",
+  "/page": "app/page.js"
 }

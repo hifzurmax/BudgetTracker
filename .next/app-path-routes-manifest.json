@@ -1,0 +1,11 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/budgets/active/route": "/api/budgets/active",
+  "/api/budgets/route": "/api/budgets",
+  "/api/expenses/[id]/route": "/api/expenses/[id]",
+  "/api/expenses/route": "/api/expenses",
+  "/create-budget/page": "/create-budget",
+  "/history/page": "/history",
+  "/page": "/"
+}

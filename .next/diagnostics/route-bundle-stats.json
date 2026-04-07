@@ -1,0 +1,57 @@
+[
+  {
+    "route": "/",
+    "firstLoadUncompressedJsBytes": 537430,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\17rzg3mgvdo-7.js",
+      ".next\\static\\chunks\\0d3shmwh5_nmn.js",
+      ".next\\static\\chunks\\0-wma1xin.xim.js",
+      ".next\\static\\chunks\\0gscbv2oo_ix7.js",
+      ".next\\static\\chunks\\0pqt~8bl3ukh4.js",
+      ".next\\static\\chunks\\0bogtdbh.dcu1.js",
+      ".next\\static\\chunks\\0e-wrhqh4h3r5.js",
+      ".next\\static\\chunks\\turbopack-025xglzrdeefu.js"
+    ]
+  },
+  {
+    "route": "/history",
+    "firstLoadUncompressedJsBytes": 528906,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\17rzg3mgvdo-7.js",
+      ".next\\static\\chunks\\0d3shmwh5_nmn.js",
+      ".next\\static\\chunks\\0w7am5vxt89u3.js",
+      ".next\\static\\chunks\\0gscbv2oo_ix7.js",
+      ".next\\static\\chunks\\0pqt~8bl3ukh4.js",
+      ".next\\static\\chunks\\0bogtdbh.dcu1.js",
+      ".next\\static\\chunks\\0e-wrhqh4h3r5.js",
+      ".next\\static\\chunks\\turbopack-025xglzrdeefu.js"
+    ]
+  },
+  {
+    "route": "/create-budget",
+    "firstLoadUncompressedJsBytes": 527250,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\17rzg3mgvdo-7.js",
+      ".next\\static\\chunks\\0d3shmwh5_nmn.js",
+      ".next\\static\\chunks\\0hkv3mv~oq~nk.js",
+      ".next\\static\\chunks\\0gscbv2oo_ix7.js",
+      ".next\\static\\chunks\\0pqt~8bl3ukh4.js",
+      ".next\\static\\chunks\\0bogtdbh.dcu1.js",
+      ".next\\static\\chunks\\0e-wrhqh4h3r5.js",
+      ".next\\static\\chunks\\turbopack-025xglzrdeefu.js"
+    ]
+  },
+  {
+    "route": "/_not-found",
+    "firstLoadUncompressedJsBytes": 523575,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\17rzg3mgvdo-7.js",
+      ".next\\static\\chunks\\0d3shmwh5_nmn.js",
+      ".next\\static\\chunks\\0gscbv2oo_ix7.js",
+      ".next\\static\\chunks\\0pqt~8bl3ukh4.js",
+      ".next\\static\\chunks\\0bogtdbh.dcu1.js",
+      ".next\\static\\chunks\\0e-wrhqh4h3r5.js",
+      ".next\\static\\chunks\\turbopack-025xglzrdeefu.js"
+    ]
+  }
+]
