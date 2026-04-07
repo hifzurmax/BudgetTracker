@@ -5,7 +5,11 @@ import { prisma } from '@/lib/prisma'
 export async function GET() {
   try {
     const budgets = await prisma.budget.findMany({
-      include: { expenses: true },
+      include: {
+        expenses: {
+          select: { id: true, amount: true }, // history only needs totals, not full expense details
+        },
+      },
       orderBy: { createdAt: 'desc' },
     })
     return NextResponse.json(budgets)

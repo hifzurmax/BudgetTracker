@@ -18,6 +18,8 @@ model Budget {
   createdAt   DateTime  @default(now())
   isActive    Boolean   @default(false)
   expenses    Expense[]
+
+  @@index([isActive])
 }
 
 model Expense {

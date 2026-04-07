@@ -45,9 +45,26 @@ export default function DashboardPage() {
     }
   }, [showToast])
 
+  // Only fetch once on mount
   useEffect(() => {
     fetchBudget()
   }, [fetchBudget])
+
+  // Optimistic add: append the returned expense directly to local state — no re-fetch
+  const handleExpenseAdded = useCallback((newExpense: Expense) => {
+    setBudget((prev) =>
+      prev ? { ...prev, expenses: [newExpense, ...prev.expenses] } : prev
+    )
+  }, [])
+
+  // Optimistic delete: remove by id immediately — no re-fetch
+  const handleExpenseDeleted = useCallback((deletedId: string) => {
+    setBudget((prev) =>
+      prev
+        ? { ...prev, expenses: prev.expenses.filter((e) => e.id !== deletedId) }
+        : prev
+    )
+  }, [])
 
   const totalSpent = budget?.expenses.reduce((sum, e) => sum + e.amount, 0) ?? 0
   const remaining = (budget?.totalAmount ?? 0) - totalSpent
@@ -109,13 +126,13 @@ export default function DashboardPage() {
       {/* Add Expense Form */}
       <AddExpenseForm
         disabled={false}
-        onExpenseAdded={fetchBudget}
+        onExpenseAdded={handleExpenseAdded}
       />
 
       {/* Expense List */}
       <ExpenseList
         expenses={budget.expenses}
-        onExpenseDeleted={fetchBudget}
+        onExpenseDeleted={handleExpenseDeleted}
       />
 
       {/* Start New Budget Confirm */}
@@ -128,8 +145,6 @@ export default function DashboardPage() {
           setShowNewBudgetConfirm(false)
           setCreatingNew(true)
           try {
-            // Deactivate current — the POST /api/budgets route does this automatically.
-            // Navigate to create-budget page.
             window.location.href = '/create-budget'
           } finally {
             setCreatingNew(false)

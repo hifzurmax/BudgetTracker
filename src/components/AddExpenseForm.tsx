@@ -3,9 +3,16 @@
 import { useState, FormEvent } from 'react'
 import { useToast } from '@/components/Toast'
 
+interface Expense {
+  id: string
+  amount: number
+  description: string
+  createdAt: string
+}
+
 interface AddExpenseFormProps {
   disabled: boolean
-  onExpenseAdded: () => void
+  onExpenseAdded: (expense: Expense) => void
 }
 
 export default function AddExpenseForm({ disabled, onExpenseAdded }: AddExpenseFormProps) {
@@ -41,10 +48,11 @@ export default function AddExpenseForm({ disabled, onExpenseAdded }: AddExpenseF
         return
       }
 
+      const newExpense: Expense = await res.json()
       showToast('Expense added successfully ✓', 'success')
       setAmount('')
       setDescription('')
-      onExpenseAdded()
+      onExpenseAdded(newExpense)
     } catch {
       showToast('Something went wrong. Try again.', 'error')
     } finally {

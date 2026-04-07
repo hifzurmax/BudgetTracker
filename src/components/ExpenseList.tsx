@@ -14,7 +14,7 @@ interface Expense {
 
 interface ExpenseListProps {
   expenses: Expense[]
-  onExpenseDeleted: () => void
+  onExpenseDeleted: (id: string) => void
 }
 
 export default function ExpenseList({ expenses, onExpenseDeleted }: ExpenseListProps) {
@@ -32,7 +32,7 @@ export default function ExpenseList({ expenses, onExpenseDeleted }: ExpenseListP
         return
       }
       showToast('Expense deleted', 'success')
-      onExpenseDeleted()
+      onExpenseDeleted(id)
     } catch {
       showToast('Something went wrong', 'error')
     } finally {
