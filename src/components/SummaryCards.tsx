@@ -1,6 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { formatCurrency } from '@/lib/utils'
+import EditBudgetModal from './EditBudgetModal'
 
 interface SummaryCardsProps {
   totalAmount: number
@@ -9,6 +11,7 @@ interface SummaryCardsProps {
   givenBy: string
   daysSince: number
   isLowBalance: boolean
+  onEditTotal: (newTotal: number) => Promise<void>
 }
 
 export default function SummaryCards({
@@ -18,7 +21,10 @@ export default function SummaryCards({
   givenBy,
   daysSince,
   isLowBalance,
+  onEditTotal,
 }: SummaryCardsProps) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+
   const spentPercent = totalAmount > 0 ? Math.min((totalSpent / totalAmount) * 100, 100) : 0
   const remainingPercent = 100 - spentPercent
 
@@ -40,8 +46,18 @@ export default function SummaryCards({
       {/* Cards Grid */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {/* Total Budget */}
-        <div className="card col-span-2 sm:col-span-1 flex flex-col gap-2 animate-slide-up">
-          <p className="label text-xs uppercase tracking-wider">Total Budget</p>
+        <div className="card col-span-2 sm:col-span-1 flex flex-col gap-2 animate-slide-up group">
+          <div className="flex justify-between items-start">
+            <p className="label text-xs uppercase tracking-wider">Total Budget</p>
+            <button
+              onClick={() => setIsEditModalOpen(true)}
+              className="opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-gray-800 hover:bg-gray-700 rounded-lg text-xs flex items-center"
+              aria-label="Edit Budget"
+              title="Edit Budget"
+            >
+              ✏️
+            </button>
+          </div>
           <p className="text-2xl font-bold text-white">{formatCurrency(totalAmount)}</p>
           <span className="badge-green w-fit">
             <span>👤</span> {givenBy}
@@ -95,6 +111,16 @@ export default function SummaryCards({
           <span>{formatCurrency(totalAmount)}</span>
         </div>
       </div>
+
+      <EditBudgetModal
+        isOpen={isEditModalOpen}
+        currentAmount={totalAmount}
+        onConfirm={async (newTotal) => {
+          await onEditTotal(newTotal)
+          setIsEditModalOpen(false)
+        }}
+        onCancel={() => setIsEditModalOpen(false)}
+      />
     </div>
   )
 }

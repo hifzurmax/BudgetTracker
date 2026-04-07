@@ -66,6 +66,28 @@ export default function DashboardPage() {
     )
   }, [])
 
+  // Optimistic edit budget: update the total amount directly
+  const handleEditBudget = useCallback(async (newTotal: number) => {
+    try {
+      const res = await fetch('/api/budgets/active', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ totalAmount: newTotal }),
+      })
+      
+      if (!res.ok) {
+        const err = await res.json()
+        showToast(err.error || 'Failed to update budget', 'error')
+        throw new Error('Failed to update')
+      }
+
+      showToast('Budget updated successfully ✓', 'success')
+      setBudget((prev) => (prev ? { ...prev, totalAmount: newTotal } : prev))
+    } catch (err) {
+      throw err // Let the modal catch it
+    }
+  }, [showToast])
+
   const totalSpent = budget?.expenses.reduce((sum, e) => sum + e.amount, 0) ?? 0
   const remaining = (budget?.totalAmount ?? 0) - totalSpent
   const isLowBalance = budget
@@ -121,6 +143,7 @@ export default function DashboardPage() {
         givenBy={budget.givenBy}
         daysSince={daysSince(budget.createdAt)}
         isLowBalance={isLowBalance}
+        onEditTotal={handleEditBudget}
       />
 
       {/* Add Expense Form */}
