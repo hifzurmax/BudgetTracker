@@ -74,7 +74,7 @@ export default function EditBudgetModal({
         </div>
 
         <div className="mb-6 mt-4">
-          <label htmlFor="edit-budget-amount" className="label">New Amount ($)</label>
+          <label htmlFor="edit-budget-amount" className="label">New Amount (৳)</label>
           <input
             ref={inputRef}
             id="edit-budget-amount"

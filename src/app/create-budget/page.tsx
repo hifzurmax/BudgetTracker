@@ -66,7 +66,7 @@ export default function CreateBudgetPage() {
         <form onSubmit={handleSubmit} className="space-y-5" id="create-budget-form">
           {/* Amount */}
           <div>
-            <label htmlFor="budget-amount" className="label">Total Amount ($)</label>
+            <label htmlFor="budget-amount" className="label">Total Amount (৳)</label>
             <input
               id="budget-amount"
               type="number"

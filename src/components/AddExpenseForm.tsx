@@ -72,7 +72,7 @@ export default function AddExpenseForm({ disabled, onExpenseAdded }: AddExpenseF
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="expense-amount" className="label">Amount ($)</label>
+          <label htmlFor="expense-amount" className="label">Amount (৳)</label>
           <input
             id="expense-amount"
             type="number"
