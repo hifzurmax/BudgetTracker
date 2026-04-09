@@ -135,6 +135,12 @@ export default function DashboardPage() {
         </button>
       </div>
 
+      {/* Add Expense Form */}
+      <AddExpenseForm
+        disabled={false}
+        onExpenseAdded={handleExpenseAdded}
+      />
+
       {/* Summary Cards + Progress */}
       <SummaryCards
         totalAmount={budget.totalAmount}
@@ -144,12 +150,6 @@ export default function DashboardPage() {
         daysSince={daysSince(budget.createdAt)}
         isLowBalance={isLowBalance}
         onEditTotal={handleEditBudget}
-      />
-
-      {/* Add Expense Form */}
-      <AddExpenseForm
-        disabled={false}
-        onExpenseAdded={handleExpenseAdded}
       />
 
       {/* Expense List */}

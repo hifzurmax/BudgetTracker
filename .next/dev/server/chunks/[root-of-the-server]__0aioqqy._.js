@@ -63,7 +63,9 @@ if ("TURBOPACK compile-time truthy", 1) globalForPrisma.prisma = prisma;
 
 __turbopack_context__.s([
     "GET",
-    ()=>GET
+    ()=>GET,
+    "PATCH",
+    ()=>PATCH
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/prisma.ts [app-route] (ecmascript)");
@@ -90,6 +92,48 @@ async function GET() {
     } catch  {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: 'Failed to fetch active budget'
+        }, {
+            status: 500
+        });
+    }
+}
+async function PATCH(request) {
+    try {
+        const body = await request.json();
+        const { totalAmount } = body;
+        if (!totalAmount || parseFloat(totalAmount) <= 0) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: 'Amount must be greater than 0'
+            }, {
+                status: 400
+            });
+        }
+        const activeBudget = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].budget.findFirst({
+            where: {
+                isActive: true
+            }
+        });
+        if (!activeBudget) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: 'No active budget found'
+            }, {
+                status: 404
+            });
+        }
+        const updatedBudget = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].budget.update({
+            where: {
+                id: activeBudget.id
+            },
+            data: {
+                totalAmount: parseFloat(totalAmount)
+            }
+        });
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(updatedBudget, {
+            status: 200
+        });
+    } catch  {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: 'Failed to update budget'
         }, {
             status: 500
         });

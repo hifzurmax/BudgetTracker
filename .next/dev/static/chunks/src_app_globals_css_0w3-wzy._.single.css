@@ -574,6 +574,10 @@ body {
   margin-bottom: 1.25rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .mb-8 {
   margin-bottom: 2rem;
 }
@@ -604,6 +608,10 @@ body {
 
 .mt-3 {
   margin-top: .75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .block {
@@ -684,6 +692,10 @@ body {
 
 .min-w-0 {
   min-width: 0;
+}
+
+.min-w-\[90px\] {
+  min-width: 90px;
 }
 
 .max-w-4xl {
@@ -1029,6 +1041,10 @@ body {
 .bg-clip-text {
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.p-1 {
+  padding: .25rem;
 }
 
 .p-1\.5 {
